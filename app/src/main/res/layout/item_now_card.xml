@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="1dp"
+    >
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:visibility="gone"/>
+
+
+    <!--最外层布局-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--天气状况-->
+            <ImageView
+                android:id="@+id/img_code_now"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:padding="15dp"
+                android:src="@drawable/cloudy2"/>
+
+            <!--右侧信息布局-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <!--第一行布局-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!--相对湿度-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="湿度"
+                            android:textColor="@color/colorDarkWhite"
+                            android:textSize="10sp"/>
+
+                        <TextView
+                            android:id="@+id/txt_hum_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="17%"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+
+                    <!--降水量-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="降水量"
+                            android:textColor="@color/colorDarkWhite"
+                            android:textSize="10sp"/>
+
+                        <TextView
+                            android:id="@+id/txt_pcpn_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="16.0 mm"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <!--第二行布局-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!--气压-->
+                    <LinearLayout
+                        android:id="@+id/layout_hum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="气压"
+                            android:textColor="@color/colorDarkWhite"
+                            android:textSize="10sp"/>
+
+                        <TextView
+                            android:id="@+id/txt_pres_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1001"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+
+                    <!--能见度-->
+                    <LinearLayout
+                        android:id="@+id/layout_pcpn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="能见度"
+                            android:textColor="@color/colorDarkWhite"
+                            android:textSize="10sp"/>
+
+                        <TextView
+                            android:id="@+id/txt_vis_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10 km"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--第一行布局-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/txt_fl_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12°"
+                android:textColor="@color/colorWhite"
+                android:textSize="36sp"/>
+
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="2dp"
+                android:baselineAlignBottom="true"
+                android:src="@drawable/ic_fengli_white"/>
+
+            <TextView
+                android:id="@+id/txt_wind_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="西北风3-4级"
+                android:textColor="@color/colorDarkWhite"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

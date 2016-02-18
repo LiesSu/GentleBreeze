@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--标题栏和伸缩栏-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_home"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        app:elevation="0dp">
+
+        <!--可伸缩标题栏-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!--标题栏-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_home"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:layout_collapseMode="pin"/>
+
+
+            <!--拓展标题栏-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5"
+                android:padding="5dp">
+
+                    <!--实时温度-->
+                    <TextView
+                        android:id="@+id/txt_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="7°"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="60sp"/>
+
+                    <!--气象条件-->
+                    <ImageView
+                        android:id="@+id/img_code"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignBottom="@id/txt_temperature"
+                        android:layout_marginBottom="16dp"
+                        android:layout_toRightOf="@id/txt_temperature"
+                        android:src="@drawable/cloudy2"/>
+
+
+                    <!--关注细节-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txt_temperature"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+
+                        <!--左信息栏-->
+                        <TextView
+                            android:id="@+id/txt_left_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=" 左信息栏"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="  |  "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="14sp"/>
+
+                        <!--左信息栏-->
+                        <TextView
+                            android:id="@+id/txt_right_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="右信息栏"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center">
+
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_time_white"
+                        android:paddingRight="4dp"/>
+
+                    <!--发布时间-->
+                    <TextView
+                        android:id="@+id/txt_update_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="21:15 发布"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+    <!--标题栏结束-->
+
+
+    <!--内容开始-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!--分页导航-->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorWhite"
+            app:tabSelectedTextColor="@color/colorWhite"
+            app:tabTextColor="@color/colorDarkWhite"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

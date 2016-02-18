@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">惠风天气</string>
+    <string name="action_settings">设置</string>
+
+
+    <string name="hum">湿度 %1$d %%</string>
+    <string name="temperature">%1$d °</string>
+    <string name="aqi">%1$s  %2$d</string>
+    <string name="wind">%1$s%2$s级</string>
+    <string name="release_time">%1$s  发布</string>
+</resources>

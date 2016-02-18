@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="1dp"
+    >
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/img_code_now"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:padding="15dp"
+            android:src="@drawable/ic_cloudy"/>
+
+        <!--右侧信息布局-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp">
+
+            <!--第一行布局-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/txt_fl_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12°"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="36sp"
+                    android:layout_alignParentBottom="true"/>
+
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/txt_wind_now"
+                    android:src="@drawable/ic_fengli_white"/>
+
+                <TextView
+                    android:id="@+id/txt_wind_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="西北风3-4级"
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="12sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <!--第二行布局-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/txt_hum_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="湿度：68%"
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/txt_pcpn_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="降水量：16.0 mm"
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+
+            <!--第三行布局-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_pres_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="气压：1001"
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/txt_vis_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="能见度：10 km"
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
