@@ -21,113 +21,217 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/img_code_now"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:padding="15dp"
-            android:src="@drawable/ic_cloudy"/>
+        <!--第一行布局-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!--右侧信息布局-->
+            <ImageView
+                android:id="@+id/img_code_d_now"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_alignParentLeft="true"
+                android:padding="15dp"
+                android:src="@drawable/cloudy2"/>
+
+            <!--第一行中部-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/img_code_n_now"
+                android:layout_toRightOf="@+id/img_code_d_now"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12° ~ 15°"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"/>
+
+                <!--日出日落-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center|bottom">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="07:27"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"/>
+
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_sunriseandsunset_white"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="19:27"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="西南风，3-4级 "
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="10sp"/>
+
+                <!--第一行中部结束-->
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_code_n_now"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_alignParentRight="true"
+                android:padding="15dp"
+                android:src="@drawable/cloudy2_night"/>
+
+            <!--第一行结束-->
+        </RelativeLayout>
+
+
+        <!--第二行开始-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp">
-
-            <!--第一行布局-->
-            <RelativeLayout
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <!--风力风向-->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:id="@+id/txt_fl_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12°"
+                    android:text="2016.02.19"
                     android:textColor="@color/colorWhite"
-                    android:textSize="36sp"
-                    android:layout_alignParentBottom="true"/>
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
 
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/txt_wind_now"
-                    android:src="@drawable/ic_fengli_white"/>
-
-                <TextView
-                    android:id="@+id/txt_wind_now"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="西北风3-4级"
-                    android:textColor="@color/colorDarkWhite"
-                    android:textSize="12sp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-
-            <!--第二行布局-->
-            <RelativeLayout
-                android:layout_width="match_parent"
+            </LinearLayout>
+            <!--降水量-->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
-
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
                 <TextView
-                    android:id="@+id/txt_hum_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="湿度：68%"
+                    android:text="降水量 "
                     android:textColor="@color/colorDarkWhite"
-                    android:textSize="12sp"/>
-
+                    android:textSize="10sp"/>
                 <TextView
-                    android:id="@+id/txt_pcpn_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="降水量：16.0 mm"
-                    android:textColor="@color/colorDarkWhite"
+                    android:text="0.0mm"
+                    android:textColor="@color/colorWhite"
                     android:textSize="12sp"/>
-
-            </RelativeLayout>
-
-            <!--第三行布局-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+            </LinearLayout>
+            <!--降水概率-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
                 <TextView
-                    android:id="@+id/txt_pres_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="气压：1001"
+                    android:text="降水概率 "
                     android:textColor="@color/colorDarkWhite"
-                    android:textSize="12sp"/>
-
+                    android:textSize="10sp"/>
                 <TextView
-                    android:id="@+id/txt_vis_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="能见度：10 km"
-                    android:textColor="@color/colorDarkWhite"
+                    android:text="0%"
+                    android:textColor="@color/colorWhite"
                     android:textSize="12sp"/>
-
-            </RelativeLayout>
+            </LinearLayout>
+            <!--湿度-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="湿度 "
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="10sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14%"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+            <!--气压-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="气压 "
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="10sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1001"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+            <!--能见度-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="能见度 "
+                    android:textColor="@color/colorDarkWhite"
+                    android:textSize="10sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10km"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"/>
+            </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 

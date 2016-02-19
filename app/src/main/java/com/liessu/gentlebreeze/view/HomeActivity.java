@@ -1,9 +1,10 @@
-package com.liessu.gentlebreeze;
+package com.liessu.gentlebreeze.view;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.liessu.gentlebreeze.R;
 import com.liessu.gentlebreeze.adapter.ForecastAdapter;
 import com.liessu.gentlebreeze.model.AQI;
 import com.liessu.gentlebreeze.model.HeWeather;
@@ -53,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView mUpdateTimeTextView;
     private TabLayout mHomeTabLayout;
     private RecyclerView mHomeRecyclerView;
+    private ViewPager mHomeViewPager;
     private DrawerLayout mHomeDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mListmenuHomeListView;
@@ -217,6 +220,7 @@ public class HomeActivity extends AppCompatActivity {
        mHomeAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_home);
        mHomeTabLayout = (TabLayout) findViewById(R.id.tab_home);
        mHomeRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_home);
+       mHomeViewPager = (ViewPager) findViewById(R.id.viewpager_home);
        mListmenuHomeListView = (ListView) findViewById(R.id.listmenu_home);
        mHomeDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout_home);
    }
