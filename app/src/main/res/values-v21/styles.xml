@@ -1,6 +1,6 @@
 <resources>>
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/colorWhite</item>
+        <item name="color">@color/whiteAccent</item>
     </style>
 
     <style name="DrawerLayoutTheme" parent="AppTheme.NoActionBar">
@@ -14,7 +14,7 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/whiteAccent</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

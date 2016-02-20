@@ -2,7 +2,7 @@
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
 
-        <item name="color">@color/colorWhite</item>
+        <item name="color">@color/whiteAccent</item>
     </style>
 
     <style name="DrawerLayoutTheme" parent="AppTheme.NoActionBar"></style>
@@ -14,9 +14,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/whiteAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:windowBackground">@color/colorGreen</item>
+        <item name="android:windowBackground">@color/whitePrimary</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 

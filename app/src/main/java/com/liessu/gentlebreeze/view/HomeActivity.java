@@ -8,8 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
@@ -25,7 +23,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.liessu.gentlebreeze.R;
-import com.liessu.gentlebreeze.adapter.ForecastAdapter;
+import com.liessu.gentlebreeze.adapter.GFragmentPagerAdapter;
 import com.liessu.gentlebreeze.model.AQI;
 import com.liessu.gentlebreeze.model.HeWeather;
 import com.liessu.gentlebreeze.model.HeWeatherJson;
@@ -34,9 +32,6 @@ import com.liessu.gentlebreeze.model.Wind;
 import com.liessu.gentlebreeze.service.HeWeatherService;
 import com.liessu.gentlebreeze.util.FormatUtil;
 
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView mUpdateTimeTextView;
     private TabLayout mHomeTabLayout;
-    private RecyclerView mHomeRecyclerView;
     private ViewPager mHomeViewPager;
     private DrawerLayout mHomeDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -84,15 +78,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setTitle("赣州");
-        bindViews();
+        findViews();
+        createTabViews();
 
-        mHomeTabLayout.addTab(mHomeTabLayout.newTab().setText("实时天气"));
-        mHomeTabLayout.addTab(mHomeTabLayout.newTab().setText("生活指数"));
-        mHomeTabLayout.addTab(mHomeTabLayout.newTab().setText("当天预报"));
-        mHomeTabLayout.addTab(mHomeTabLayout.newTab().setText("未来天气"));
-//        mTabLayout.addTab(mTabLayout.newTab().setText("空气质量"));
-        mHomeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mHomeRecyclerView.setAdapter(new ForecastAdapter(menuItem));
+
         setSupportActionBar(mHomeToolbar);
         getSupportActionBar().setElevation(0);
         mDrawerToggle = new ActionBarDrawerToggle(this, mHomeDrawerLayout, mHomeToolbar,
@@ -102,6 +91,7 @@ public class HomeActivity extends AppCompatActivity {
         mListmenuHomeListView.setAdapter(new ArrayAdapter<String>(this, R.layout.item_drawer_home,
                 R.id.item_name, menuItem));
         mListmenuHomeListView.setOnItemClickListener(mOnDrawerItemClickListener);
+        
 
 
         mHomeAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -122,6 +112,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -179,8 +170,8 @@ public class HomeActivity extends AppCompatActivity {
         updateHomeData(heWeather);
 
         String updateDate = FormatUtil.dateFormat(heWeather.getBasic().getUpdateDate().getLoc(),
-                "yyyy-MM-dd HH:mm","HH:mm");
-        mUpdateTimeTextView.setText(String.format(getString(R.string.release_time),updateDate));
+                "yyyy-MM-dd HH:mm", "HH:mm");
+        mUpdateTimeTextView.setText(String.format(getString(R.string.release_time), updateDate));
 
     }
 
@@ -203,10 +194,25 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * 设置TabLayout属性、创建VIewPager分页内容
+     */
+    private void createTabViews() {
+        GFragmentPagerAdapter fragmentAdpaer = new GFragmentPagerAdapter(getSupportFragmentManager(),null,null);
+        fragmentAdpaer.addFragment(new RealTimeFragment(),"实时天气");
+        fragmentAdpaer.addFragment(new HourlyFragment(),"当天预报");
+        fragmentAdpaer.addFragment(new DailyFragment(),"未来天气");
+        fragmentAdpaer.addFragment(new IndexFragment(),"生活指数");
+        mHomeViewPager.setAdapter(fragmentAdpaer);
+        mHomeViewPager.setCurrentItem(0); //TODO：设置中设置默认分页
+        mHomeTabLayout.setupWithViewPager(mHomeViewPager);
+    }
+
     /**
      * 将控件变量与控件绑定
      */
-   private void bindViews(){
+   private void findViews(){
        //内容控件
 //       setContentView(R.layout.content_home);
        mTemperatureTextView = (TextView) findViewById(R.id.txt_temperature);
@@ -219,7 +225,6 @@ public class HomeActivity extends AppCompatActivity {
        mHomeToolbar = (Toolbar) findViewById(R.id.toolbar_home);
        mHomeAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_home);
        mHomeTabLayout = (TabLayout) findViewById(R.id.tab_home);
-       mHomeRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_home);
        mHomeViewPager = (ViewPager) findViewById(R.id.viewpager_home);
        mListmenuHomeListView = (ListView) findViewById(R.id.listmenu_home);
        mHomeDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout_home);
