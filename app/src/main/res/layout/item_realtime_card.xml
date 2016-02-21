@@ -32,7 +32,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:padding="15dp"
-                android:src="@drawable/cloudy2"/>
+                android:src="@drawable/cloudy2_night"/>
 
             <!--温度风向布局-->
             <LinearLayout

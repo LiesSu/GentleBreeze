@@ -1,5 +1,11 @@
 package com.liessu.gentlebreeze.util;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.media.Image;
+
+import com.liessu.gentlebreeze.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -7,6 +13,9 @@ import java.util.Date;
  * 格式化工具类
  */
 public class FormatUtil {
+    private static final String DAY_PREFIX = "code_";
+    private static final String NIGHT_PREFIX = "code_night_";
+
     /**
      * 将String型格式化,比如想要将2011-11-11格式化成2011年11月11日,就StringPattern("2011-11-11","yyyy-MM-dd","yyyy年MM月dd日").
      * @param date String 想要格式化的日期
@@ -26,5 +35,29 @@ public class FormatUtil {
             e.printStackTrace() ;       // 打印异常信息
         }
         return sdf2.format(d);
+    }
+
+    /**
+     * 根据天气代码和时间，获得天气ICON
+     * @param code 天气代码
+     * @param time  待显示的时刻
+     * @return 根据天气代码得出天气ICON组，06:00~18:00之间返回日间的ICON资源ID，否则返回夜间ICON
+     * 的资源ID。如果没有对应的资源，则返回0
+     */
+    public static int obtainImageIdentifier(Context context, int code, String time){
+        int imageID;
+        Resources res = context.getResources();
+        final String packageName = context.getPackageName();
+        final String timeByHour = dateFormat(time,"yyyy-MM-dd HH:mm", "HH:mm");
+        if(timeByHour.compareTo("06:00")>0 && timeByHour.compareTo("18:00")<0) {
+             imageID = res.getIdentifier(DAY_PREFIX+code , "drawable", packageName);
+        }else {
+            imageID = res.getIdentifier(NIGHT_PREFIX + code, "drawable", packageName);
+        }
+
+        if(imageID == 0 )
+            return R.drawable.code_default;
+        else
+            return imageID;
     }
 }

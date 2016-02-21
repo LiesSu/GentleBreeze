@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <!--标题栏和伸缩栏-->
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_home"
+        android:id="@+id/home_abl"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:background="@android:color/transparent"
@@ -22,7 +23,7 @@
 
             <!--标题栏-->
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_home"
+                android:id="@+id/home_tb"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 app:layout_collapseMode="pin"/>
@@ -40,7 +41,7 @@
 
                     <!--实时温度-->
                     <TextView
-                        android:id="@+id/txt_temperature"
+                        android:id="@+id/temperature_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -50,12 +51,12 @@
 
                     <!--气象条件-->
                     <ImageView
-                        android:id="@+id/img_code"
+                        android:id="@+id/code_iv"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@id/txt_temperature"
+                        android:layout_alignBottom="@id/temperature_tv"
                         android:layout_marginBottom="16dp"
-                        android:layout_toRightOf="@id/txt_temperature"
+                        android:layout_toRightOf="@id/temperature_tv"
                         android:src="@drawable/cloudy2"/>
 
 
@@ -63,14 +64,14 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/txt_temperature"
+                        android:layout_below="@id/temperature_tv"
                         android:layout_centerHorizontal="true"
                         android:orientation="horizontal">
 
 
                         <!--左信息栏-->
                         <TextView
-                            android:id="@+id/txt_left_home"
+                            android:id="@+id/left_info_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -88,7 +89,7 @@
 
                         <!--左信息栏-->
                         <TextView
-                            android:id="@+id/txt_right_home"
+                            android:id="@+id/right_info_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -115,7 +116,7 @@
 
                     <!--发布时间-->
                     <TextView
-                        android:id="@+id/txt_update_time"
+                        android:id="@+id/update_time_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="21:15 发布"
@@ -137,14 +138,9 @@
        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical">-->
-
             <!--分页导航-->
             <android.support.design.widget.TabLayout
-                android:id="@+id/tab_home"
+                android:id="@+id/home_tl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -154,13 +150,11 @@
 
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager_home"
+                android:id="@+id/home_vp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"/>
 
         </LinearLayout>
-
-    <!--</android.support.v4.widget.NestedScrollView>-->
 
 </android.support.design.widget.CoordinatorLayout>
