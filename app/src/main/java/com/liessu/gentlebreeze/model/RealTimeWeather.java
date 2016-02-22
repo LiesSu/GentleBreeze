@@ -3,7 +3,7 @@ package com.liessu.gentlebreeze.model;
 /**
  * 实况天气
  */
-public class NowWeather {
+public class RealTimeWeather {
     /**天气状况**/
     private Condition cond;
     /**体感温度**/
@@ -21,10 +21,10 @@ public class NowWeather {
     /**风力风向**/
     private Wind wind;
 
-    public NowWeather() {
+    public RealTimeWeather() {
     }
 
-    public NowWeather(Condition cond, int fl, int hum, float pcpn, int pres, int tmp, float vis, Wind wind) {
+    public RealTimeWeather(Condition cond, int fl, int hum, float pcpn, int pres, int tmp, float vis, Wind wind) {
         this.cond = cond;
         this.fl = fl;
         this.hum = hum;

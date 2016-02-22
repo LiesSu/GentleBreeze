@@ -10,7 +10,7 @@ import java.util.List;
 public class HeWeather implements IWeather{
     private District basic;
     @SerializedName("now")
-    private NowWeather nowWeather;
+    private RealTimeWeather realTimeWeather;
     @SerializedName("hourly_forecast")
     private List<HourlyForecast> hourlyForecast;
     @SerializedName("daily_forecast")
@@ -22,10 +22,10 @@ public class HeWeather implements IWeather{
     public HeWeather() {
     }
 
-    public HeWeather(District basic, NowWeather nowWeather, List<HourlyForecast> hourlyForecast,
+    public HeWeather(District basic, RealTimeWeather realTimeWeather, List<HourlyForecast> hourlyForecast,
                      List<DailyForecast> dailyForecast, AQI aqi, Suggestion suggestion, String status) {
         this.basic = basic;
-        this.nowWeather = nowWeather;
+        this.realTimeWeather = realTimeWeather;
         this.hourlyForecast = hourlyForecast;
         this.dailyForecast = dailyForecast;
         this.aqi = aqi;
@@ -41,12 +41,12 @@ public class HeWeather implements IWeather{
         this.basic = basic;
     }
 
-    public NowWeather getNowWeather() {
-        return nowWeather;
+    public RealTimeWeather getRealTimeWeather() {
+        return realTimeWeather;
     }
 
-    public void setNowWeather(NowWeather nowWeather) {
-        this.nowWeather = nowWeather;
+    public void setRealTimeWeather(RealTimeWeather realTimeWeather) {
+        this.realTimeWeather = realTimeWeather;
     }
 
     public List<HourlyForecast> getHourlyForecast() {

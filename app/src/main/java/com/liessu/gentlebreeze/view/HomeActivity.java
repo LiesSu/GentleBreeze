@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,14 +27,12 @@ import com.liessu.gentlebreeze.adapter.GFragmentPagerAdapter;
 import com.liessu.gentlebreeze.model.AQI;
 import com.liessu.gentlebreeze.model.HeWeather;
 import com.liessu.gentlebreeze.model.HeWeatherJson;
-import com.liessu.gentlebreeze.model.NowWeather;
+import com.liessu.gentlebreeze.model.RealTimeWeather;
 import com.liessu.gentlebreeze.model.Wind;
 import com.liessu.gentlebreeze.service.HeWeatherService;
 import com.liessu.gentlebreeze.util.FormatUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -71,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout homeDrawerLayout;
 
     private ActionBarDrawerToggle homeDrawerToggle;
-    private ArrayList<IUpdateUICallback> updateUIListeners;
+    private ArrayList<OnDataUpdateListener> dataUpdateListeners = new ArrayList<OnDataUpdateListener>();
 
 
     private String[] menuItem = {"城市01", "城市02", "城市03", "城市04", "城市05", "城市06", "城市01", "城市02", "城市03", "城市04", "城市05", "城市06"
@@ -138,15 +135,18 @@ public class HomeActivity extends AppCompatActivity {
         weatherCall.enqueue(new Callback<HeWeatherJson>() {
             @Override
             public void onResponse(Call<HeWeatherJson> call, Response<HeWeatherJson> response) {
-                System.out.println("Finish");
-                HeWeatherJson heWeathers = response.body();
-                //TODO : 判断是否有多个结果
-                updateData(heWeathers.getHeWeathers().get(0));
-
+                if(!response.isSuccess()){
+                    Snackbar.make(homeDrawerLayout,getString(R.string.network_error), Snackbar.LENGTH_LONG).show();
+                }else{
+                    HeWeatherJson heWeathers = response.body();
+                    //TODO : 判断是否有多个结果
+                    updateData(heWeathers.getHeWeathers().get(0));
+                }
             }
 
             @Override
             public void onFailure(Call<HeWeatherJson> call, Throwable t) {
+                Snackbar.make(homeDrawerLayout,getString(R.string.network_error), Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -165,19 +165,10 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        NowWeather nowWeather = heWeather.getNowWeather();
-        temperatureTextView.setText(String.format(getString(R.string.temperature), nowWeather.getTmp()));
         updateHomeData(heWeather);
-
-        String updateDate = FormatUtil.dateFormat(heWeather.getBasic().getUpdateDate().getLoc(),
-                "yyyy-MM-dd HH:mm", "HH:mm");
-        updateTimeTextView.setText(String.format(getString(R.string.release_time), updateDate));
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        int imageCodeID = FormatUtil.obtainImageIdentifier(this,nowWeather.getCond().getCode(),
-                simpleDateFormat.format(new Date()));
-        codeImageView.setImageResource(imageCodeID);
-
+        for (OnDataUpdateListener listener : dataUpdateListeners){
+            listener.onDataUpdate(heWeather);
+        }
     }
 
     /**
@@ -186,17 +177,24 @@ public class HomeActivity extends AppCompatActivity {
      * @param heWeather 天气对象
      */
     private void updateHomeData(HeWeather heWeather) {
-        //TODO:更新天气ICON
+        RealTimeWeather realTimeWeather = heWeather.getRealTimeWeather();
+        temperatureTextView.setText(String.format(getString(R.string.temperature), realTimeWeather.getTmp()));
+        String updateDate = FormatUtil.dateFormat(heWeather.getBasic().getUpdateDate().getLoc(),
+                "yyyy-MM-dd HH:mm", "HH:mm");
+        updateTimeTextView.setText(String.format(getString(R.string.release_time), updateDate));
+
+        int imageCodeID = FormatUtil.obtainImageIdentifier(this, realTimeWeather.getCond().getCode(),null);
+        codeImageView.setImageResource(imageCodeID);
         //TODO : 定制信息栏内容
-        NowWeather nowWeather = heWeather.getNowWeather();
-        rightInfoTextView.setText(String.format(getString(R.string.hum), nowWeather.getHum()));
+        rightInfoTextView.setText(String.format(getString(R.string.hum), realTimeWeather.getHum()));
         //该城市没有空气指数检测
         if (heWeather.getAqi() == null) {
-            Wind wind = nowWeather.getWind();
+            Wind wind = realTimeWeather.getWind();
             leftInfoTextView.setText(String.format(getString(R.string.wind), wind.getDir(), wind.getSc()));
         } else {//该城市有空气指数检测
             AQI.AqiCity aqiCity = heWeather.getAqi().getCity();
-            leftInfoTextView.setText(Html.fromHtml(String.format(getString(R.string.aqi), aqiCity.getQlty(), aqiCity.getPm25())));
+            leftInfoTextView.setText(Html.fromHtml(String.format(getString(R.string.aqi), aqiCity.getQlty(),
+                    aqiCity.getPm25())));
         }
     }
 
@@ -215,8 +213,8 @@ public class HomeActivity extends AppCompatActivity {
         homeTabLayout.setupWithViewPager(homeViewPager);
     }
 
-    public void setUpdateUIListener(IUpdateUICallback callback){
-        updateUIListeners.add(callback);
+    public void setOnDataUpdateListener(OnDataUpdateListener callback){
+        dataUpdateListeners.add(callback);
     }
 
 }

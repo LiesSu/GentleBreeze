@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    android:id="@+id/card_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,6 +8,7 @@
     card_view:cardBackgroundColor="@android:color/transparent"
     card_view:cardCornerRadius="6dp"
     card_view:cardElevation="0dp"
+    android:background="?android:attr/selectableItemBackground"
     >
 
     <!--最外层布局-->
@@ -26,7 +26,7 @@
 
             <!--天气状况-->
             <ImageView
-                android:id="@+id/img_code_now"
+                android:id="@+id/code_realtime_iv"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:layout_alignParentLeft="true"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/img_code_now"
+                android:layout_toRightOf="@+id/code_realtime_iv"
                 android:gravity="center">
 
                 <!--温度风向-->
@@ -52,28 +52,22 @@
                     >
 
                     <TextView
-                        android:id="@+id/txt_fl_now"
+                        android:id="@+id/fl_realtime_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12°"
                         android:textColor="@color/whiteAccent"
                         android:textSize="36sp"/>
 
-                    <!--<ImageView-->
-                    <!--android:layout_width="12dp"-->
-                    <!--android:layout_height="12dp"-->
-                    <!--android:layout_marginLeft="6dp"-->
-                    <!--android:layout_marginRight="2dp"-->
-                    <!--android:baselineAlignBottom="true"-->
-                    <!--android:src="@drawable/ic_fengli_white"/>-->
                     <TextView
-                        android:id="@+id/txt_wind_now"
+                        android:id="@+id/wind_realtime_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="西北风，3-4级"
                         android:textColor="@color/whiteAccent"
                         android:textSize="10sp"/>
+
                 </LinearLayout>
 
 
@@ -110,7 +104,7 @@
                                 android:textSize="10sp"/>
 
                             <TextView
-                                android:id="@+id/txt_hum_now"
+                                android:id="@+id/hum_realtime_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="17%"
@@ -135,7 +129,7 @@
                                 android:textSize="10sp"/>
 
                             <TextView
-                                android:id="@+id/txt_pcpn_now"
+                                android:id="@+id/pcpn_realtime_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="16.0 mm"
@@ -157,7 +151,6 @@
 
                         <!--气压-->
                         <LinearLayout
-                            android:id="@+id/layout_hum"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -172,7 +165,7 @@
                                 android:textSize="10sp"/>
 
                             <TextView
-                                android:id="@+id/txt_pres_now"
+                                android:id="@+id/pres_realtime_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1001"
@@ -183,7 +176,6 @@
 
                         <!--能见度-->
                         <LinearLayout
-                            android:id="@+id/layout_pcpn"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -198,7 +190,7 @@
                                 android:textSize="10sp"/>
 
                             <TextView
-                                android:id="@+id/txt_vis_now"
+                                android:id="@+id/vis_realtime_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="10 km"

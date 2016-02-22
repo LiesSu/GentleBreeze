@@ -45,6 +45,11 @@ public class FormatUtil {
      * 的资源ID。如果没有对应的资源，则返回0
      */
     public static int obtainImageIdentifier(Context context, int code, String time){
+        if(time == null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            time = simpleDateFormat.format(new Date());
+        }
+
         int imageID;
         Resources res = context.getResources();
         final String packageName = context.getPackageName();
@@ -59,5 +64,16 @@ public class FormatUtil {
             return R.drawable.code_default;
         else
             return imageID;
+    }
+
+    /**
+     * 取出string.xml中字符串并完成格式化
+     * @param context 上下文
+     * @param strId 字符串ID
+     * @param objects 参数列表
+     * @return 格式化后的字符串
+     */
+    public static  String formatStringResource(Context context,int strId,Object... objects){
+        return String.format(context.getString(strId),objects);
     }
 }
