@@ -50,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
     TextView temperatureTextView;
     @Bind(R.id.code_iv)
     ImageView codeImageView;
+    @Bind(R.id.code_tv)
+    TextView codeTextView;
     @Bind(R.id.left_info_tv)
     TextView leftInfoTextView;
     @Bind(R.id.right_info_tv)
@@ -185,6 +187,7 @@ public class HomeActivity extends AppCompatActivity {
 
         int imageCodeID = FormatUtil.obtainImageIdentifier(this, realTimeWeather.getCond().getCode(),null);
         codeImageView.setImageResource(imageCodeID);
+        codeTextView.setText(realTimeWeather.getCond().getTxt());
         //TODO : 定制信息栏内容
         rightInfoTextView.setText(String.format(getString(R.string.hum), realTimeWeather.getHum()));
         //该城市没有空气指数检测

@@ -37,6 +37,8 @@ public class RealTimeFragment extends Fragment implements OnDataUpdateListener {
     @Bind(R.id.vis_realtime_tv)
     TextView visRealtimeTv;
 
+    private RealTimeWeather realTime;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,25 +50,14 @@ public class RealTimeFragment extends Fragment implements OnDataUpdateListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_realtime, container, false);
         ButterKnife.bind(this, view);
+        updateUI();
         return view;
     }
 
     @Override
     public void onDataUpdate(HeWeather heWeather) {
-        RealTimeWeather realTime = heWeather.getRealTimeWeather();
-        codeRealtimeIv.setImageResource(FormatUtil.obtainImageIdentifier(getActivity(),
-                realTime.getCond().getCode(),null));
-        flRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(),R.string.temperature
-                ,realTime.getFl()));
-        windRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(),R.string.wind,
-                realTime.getWind().getDir(),realTime.getWind().getSc()));
-        humRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(),R.string.hum
-                ,realTime.getHum()));
-        pcpnRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(),R.string.pcpn
-                ,realTime.getPcpn()));
-        presRealtimeTv.setText(String.valueOf(realTime.getPres()));
-        visRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(),R.string.vis
-                ,realTime.getVis()));
+        realTime = heWeather.getRealTimeWeather();
+        updateUI();
     }
 
     @Override
@@ -78,5 +69,24 @@ public class RealTimeFragment extends Fragment implements OnDataUpdateListener {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+
+    private void updateUI() {
+        if (realTime != null) {
+            codeRealtimeIv.setImageResource(FormatUtil.obtainImageIdentifier(getActivity(),
+                    realTime.getCond().getCode(), null));
+            flRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(), R.string.temperature
+                    , realTime.getFl()));
+            windRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(), R.string.wind,
+                    realTime.getWind().getDir(), realTime.getWind().getSc()));
+            humRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(), R.string.hum
+                    , realTime.getHum()));
+            pcpnRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(), R.string.pcpn
+                    , realTime.getPcpn()));
+            presRealtimeTv.setText(String.valueOf(realTime.getPres()));
+            visRealtimeTv.setText(FormatUtil.formatStringResource(getActivity(), R.string.vis
+                    , realTime.getVis()));
+        }
     }
 }
